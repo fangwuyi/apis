@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="昕薇，时尚杂志，女性杂志，昕薇媒体">
+    <meta name="description" content="《昕薇》杂志定位于最具个性和消费能力的年轻女孩，张扬个性、打造最前沿的国际潮流和最实用的扮美技巧，展现最时尚的美丽人生。">
+</head>
+<style type="text/css">
+    body{
+        text-align: center;
+        color: #333333;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;line-height: 1.5em;
+    }
+    .container{max-width: 720px;margin: 0 auto;text-align: left;}
+    .author_box{display: -ms-flexbox;display: flex;-ms-flex-align: center;align-items: center;margin-top: 16px;margin-bottom: 16px;}
+    .author_img{width: 32px;height: 32px;border-radius: 50%;display: inline-block;margin-right: 8px;margin-left: 16px;}
+    .author_name{color: #999999;flex: 1;}
+    .stress{color: #EF74B0;}
+    p{padding-top: 0;margin-top: 0;padding: 16px;}
+    img,video{max-width: 100%;padding: 0;margin: 0;}
+    .reflect{
+        -webkit-box-reflect: below 0px -webkit-linear-gradient(transparent 20%,rgba(0,0,0,.4));
+        box-reflect: below 0px linear-gradient(transparent 20%,rgba(0,0,0,.4));
+        margin-bottom: 50px;
+    }
+    .hide{
+        display: none;
+    }
+</style>
+<body>
+    <div  id="app">
+        <title>{{title}}</title>
+        <div class="container">
+            <template v-if="article.topimgs != ''"><img v-bind:src="article.topimgs" /></template>
+            <div class="author_box">
+                <img class="author_img" v-bind:src="article.author_headimg" />
+                <span class="author_name">{{article.author_name}}</span>
+            </div>
+            <template v-for="item in article.content_nodes">
+                <p v-if="item.type == 'text'">{{item.text}}</p>
+                <div v-else-if="item.type == 'img'"><img v-bind:src="item.src"/></div>
+                <div v-else-if="item.type == 'video'"><video v-bind:src="item.src" controls="controls"></video></div>
+            </template>
+            <div class="labels-box">
+                <div class="subtitle">相关标签</div>
+                <span v-for="label in article.labels" class="label">{{label}}</span>
+            </div>
+            <div class="recommend-box">
+                <div class="subtitle">文章推荐</div>
+                <div v-for="vr in recommend" class="recommend-li">
+                    <div class="recommend-img"><img v-bind:src="vr.imgs"></div>
+                    <div class="recommend-title">{{vr.title}}}</div>
+                </div>
+            </div>
+            <div class="comment-box hide">
+                <div class="subtitle">全部评论</div>
+               <div>还没有有人评论！</div>
+            </div>
+            <div class="btns-box hide">
+                <div>
+                    <input type="text" name="">
+                </div>
+                <div></div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="./js/axios.js"></script>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript" src="./js/article.js"></script>
+</body>
+</html>

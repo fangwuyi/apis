@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="昕薇，时尚杂志，女性杂志，昕薇媒体">
+  <meta name="description" content="《昕薇》杂志定位于最具个性和消费能力的年轻女孩，张扬个性、打造最前沿的国际潮流和最实用的扮美技巧，展现最时尚的美丽人生。">
+  <title>中国女孩大赛</title>
+  <style type="text/css">
+  body {
+    margin: 0;
+    color: rgba(0,0,0,.80);
+    font-family: "SF Pro SC","SF Pro Text","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  article {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .article-node {
+  }
+  .article-node img {
+    vertical-align: bottom;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 1em;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    line-height: 34px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 1.5em 1em;
+  }
+  figure {
+    margin: 0;
+    margin-bottom: 2rem;
+  }
+  figcaption {
+    font-size: 12px;
+    color: rgba(0,0,0,.38);
+    text-align: center;
+    margin-top: 8px;
+  }
+  img {
+    max-width: 100%;
+  }
+  video {
+    width: 100%;
+  }
+  .illustration {
+    width: 100%;
+  }
+  .emphasize {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <div id='app'>
+    <article>
+      <div class="article-node" v-for="item in articleNodes">
+        <h1 v-if="item.type == 'title'" v-text="item.text"></h1>
+        <p v-if="item.type == 'text'" v-text="item.text"></p>
+        <p v-if="item.type == 'textNodes'">
+          <span v-for="i in item.nodes" v-text="i.text" :class="{emphasize: i.emphasize}"></span>
+        </p>
+
+        <figure v-if="item.type == 'img'">
+          <img class="illustration" :src="item.src"/>
+          <figcaption v-if="item.caption" v-text="item.caption"></figcaption>
+        </figure>
+        <video v-if="item.type == 'video'" :src="item.src" controls ref='video' :data-src="item.src" @playing="handlePlaying" :poster="item.poster" preload='metadata'></video>
+      </div>
+    </article>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+  const articleNodes = [
+      {
+          "type": "title",
+          "text": "2019昕薇中国女孩大赛10周年开赛在即，众多明星喊你来参赛！"
+      },
+      {
+          "type": "video",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/2019%E5%AE%A3%E4%BC%A0%E7%89%8701%E6%9B%B4%E6%96%B0.mp4",
+          poster: 'http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905051057157836_300_600.png',
+      },
+      {
+          "type": "text",
+          "text": "《昕薇》中国女孩大赛是由《昕薇》杂志自2010年起着力重点打造的一档集选秀与综娱于一体的年度最重要的线下活动，并通过比赛形成了“素人——红人——杂志封面模特到全能艺人”的闭环艺人培养机制。期间，大赛通过杂志、网络等平台选拔推出了众多质素高、形象好的女生，打造杂志专属模特10000多人，总覆盖人群高达200多万。9年来，《昕薇》中国女孩大赛已经成为年轻女生瞩目的成就梦想的造梦舞台，走出了崔京池、于夏茉、王艳丽、黄梓熙等一批集平面拍摄、影视表演、线上直播等技能于一身的优秀女生。"
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201904302354092336_300_600.jpg",
+          "width": "550",
+          "height": "307",
+          "caption": "昕薇专属模特",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010000558805_300_600.jpg",
+          "width": "500",
+          "height": "262",
+          "caption": "2014年“中国女孩”大赛",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010001373604_300_600.jpg",
+          "width": "8000",
+          "height": "4500"
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010001498928_300_600.jpg",
+          "width": "2667",
+          "height": "4733",
+          "caption": "2015年“中国女孩“大赛",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010002287891_300_600.jpg",
+          "width": "5760",
+          "height": "3680",
+          "caption": "2018年“中国女孩“大赛",
+      },
+      {
+          "type": "text",
+          "text": "今年，是昕薇中国女孩大赛的第十个年头，与以往的比赛相比，今年的比赛除了延续去年的比赛基础赛制，还特别为每一个参赛女生打造了“比赛个人主页”，让每一位参赛的选手都可以在自己的主页上尽情展示才艺，通过获得更多粉丝的关注来为自己拉高比赛人气。"
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010003418960_300_600.png",
+          "width": "650",
+          "height": "925",
+          "caption": "个人主页示意",
+      },
+      {
+          "type": "text",
+          "text": "比赛预计于今年5月底正式开赛。比赛赛制仍然分为四个阶段：分赛区比赛、线上比赛、大赛训练营、决赛。其中，分赛区的比赛以华北、华东、华南、西北、东北、西南六大赛区为基准，特邀了众多城市的合作伙伴参与赛事，共襄盛举，他们是：山东赛区朝禾文化传媒有限公司、南宁赛区广西奇异果文化传媒有限公司、沈阳赛区沈阳橙天橙地影院企业管理有限公司、长春赛区长春市麦田文化传媒有限公司、东南亚赛区Uplive直播、厦门赛区叁太子文化传媒有限公司。"
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010004394465_300_600.jpg",
+          "width": "2528",
+          "height": "3283",
+          "caption": "2019昕薇“中国女孩”大赛海报",
+      },
+      {
+          "type": "text",
+          "text": "为了通过比赛选拔的优秀选手能够拥有更强大的造梦舞台，今年昕薇杂志特别打造了舞台剧《搜狐记》，这是一部取材于《聊斋志异》故事改编而成的舞台剧，以几位美丽狐女的爱情故事为主线，这是一部为大赛选手量身定制的剧目，本届大赛的获奖优秀选手即有机会成为《搜狐记》的女主角之一。"
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010005221219_300_600.jpg",
+          "width": "2667",
+          "height": "4733",
+          "caption": "搜狐记海报",
+      },
+      {
+          "type": "text",
+          "text": "除了会获得演剧的机会，优秀选手仍然有登上《昕薇》杂志封面、参与《昕薇》杂志和昕薇自媒体拍摄的机会，10强选手也一样有机会参与昕薇海外节目的拍摄制作。"
+      },
+      {
+          "type": "text",
+          "text": "对于想通过比赛提升自己的女生，昕薇星学院一如既往地是你最好的助力。凡大赛的报名参赛选手，一样有机会以优惠的价格获得昕薇星学院的培训课程。"
+      },
+      {
+          "type": "textNodes",
+          nodes: [
+            {text: '对于2019昕薇中国女孩大赛，众多明星都表达了自己的美好祝愿，包括',},
+            {text: '炎亚纶、徐璐 、刘惜君、白举纲', emphasize: true},
+            {text: '在内的明星艺人纷纷给今年的参赛女生送上了自己的祝福。',},
+          ]
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010009169373_300_600.png",
+          "width": "2667",
+          "height": "4733",
+          "caption": "实力派偶像歌手炎亚纶",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010016555797_300_600.png",
+          "width": "1257",
+          "height": "638",
+          "caption": "当红小花演员徐璐",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010017099131_300_600.png",
+          "width": "1229",
+          "height": "701",
+          "caption": "优雅温婉歌手刘惜君",
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010017552702_300_600.png",
+          "width": "1249",
+          "height": "689",
+          "caption": "“追梦少年“歌手白举纲",
+      },
+      {
+          "type": "text",
+          "text": "还等什么，通过以下方式，即可报名参赛，梦想不要等待，梦想就在今天，2019，就要你红！"
+      },
+      {
+          "type": "video",
+          "src": "https://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/2019ChinaGirl02.mp4",
+          poster: 'http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905051057157836_300_600.png',
+      },
+      {
+          "type": "textNodes",
+          nodes: [
+            {"text": "请通过以下方式进行报名："},
+            {"text": "微信小程序搜索“中国女孩”", emphasize: true},
+          ]
+      },
+      {
+          "type": "text",
+          "text": "2019昕薇中国女孩大赛合作媒体名单："
+      },
+      {
+          "type": "img",
+          "src": "http://xinwei-oss-aliyun.oss-cn-beijing.aliyuncs.com/community/201905010021005186_300_600.jpg",
+          "width": "3750",
+          "height": "1250"
+      },
+  ]
+
+  var app_index = new Vue({
+    el: '#app',
+    data: {
+      articleNodes,
+    },
+    methods: {
+      handlePlaying(e) {
+        // 除了当前播放的这个，其他全部暂停
+        let videoRefs = this.$refs.video
+        let currentVideoSrc = e.srcElement.dataset.src
+        // console.log('视频开始播放', currentVideoSrc)
+        videoRefs.forEach(item => {
+          if (item.dataset.src != currentVideoSrc) {
+            item.pause()
+            // console.log('视频已暂停', item.dataset.src)
+          }
+        })
+      },
+    },
+  })
+  </script>
+</body>
+</html>
